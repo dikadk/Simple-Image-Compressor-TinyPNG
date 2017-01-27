@@ -1,7 +1,6 @@
 package com.ImageCompress;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +22,7 @@ public class Files {
     public static ArrayList<String> getFilenames(ArrayList<File> files){
         ArrayList<String> fileNames = new ArrayList<String>();
         for(File file: files){
-            if(!file.getName().endsWith(".jar") || !file.getName().endsWith(".properties")){
+            if(file.getName().endsWith(".jpg") || file.getName().endsWith(".png") || file.getName().endsWith(".JPEG")){
                 fileNames.add(file.getAbsolutePath());
             }
         }
