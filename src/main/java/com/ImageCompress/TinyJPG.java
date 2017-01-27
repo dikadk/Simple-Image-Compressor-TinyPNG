@@ -1,8 +1,7 @@
 package com.ImageCompress;
 
-import com.tinify.ClientException;
-import com.tinify.Source;
-import com.tinify.Tinify;
+import com.tinify.*;
+import com.tinify.Exception;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,10 +47,16 @@ public class TinyJPG {
             try {
                 Source source = Tinify.fromFile(fileName);
                 source.toFile(fileName);
+                System.out.println(fileName);
             } catch (ClientException e) {
                 System.out.println("Unsupported file format "+fileName);
-            } catch (IOException e) {
-                e.printStackTrace();
+            }
+            catch(ServerException e) {
+                System.out.println("Problem with TinityApi "+fileName);
+            } catch(ConnectionException e) {
+                System.out.println("A network connection error occurred. "+ fileName);
+            } catch(java.lang.Exception e) {
+                System.out.println("Something else went wrong, unrelated to the Tinify API. "+fileName);
             }
         }
     }
